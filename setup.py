@@ -33,7 +33,7 @@ setup(name='quintagroup.seoptimizer',
              'Vitaliy Podoba, Volodymyr Cherepanyak, Taras Melnychuk, '
              'Vitaliy Stepanov, Andriy Mylenkyy',
       author_email='support@quintagroup.com',
-      url='http://quintagroup.com/services/'
+      url='http://quintagroup.com/services/',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['quintagroup'],
