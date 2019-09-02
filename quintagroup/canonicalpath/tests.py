@@ -159,8 +159,8 @@ class TestDefaultCanonicalPathAdapter(TestCase):
             except InvalidValue:
                 continue
             else:
-                raise self.failureException, "InvalidValue not raised when " \
-                      "'%s' wrong value try to set" % wrong
+                raise self.failureException("InvalidValue not raised when " \
+                      "'%s' wrong value try to set" % wrong)
         
     def testValidationGood(self):
         cpadapter = queryAdapter(self.my_doc, ICanonicalPath)
@@ -262,8 +262,8 @@ class TestDefaultCanonicalLinkAdapter(TestCase):
             except InvalidValue:
                 continue
             else:
-                raise self.failureException, "InvalidValue not raised when " \
-                    "'%s' wrong value try to set" % wrong
+                raise self.failureException("InvalidValue not raised when " \
+                    "'%s' wrong value try to set" % wrong)
         
     def testValidationGood(self):
         cladapter = queryAdapter(self.my_doc, ICanonicalLink)

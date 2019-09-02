@@ -1,50 +1,74 @@
 # -*- coding: utf-8 -*-
-"""
-This module contains the tool of quintagroup.seoptimizer
-"""
-import os
+"""Installer for the quintagroup.canonicalpath package."""
 
-from setuptools import find_packages, setup
+from setuptools import find_packages
+from setuptools import setup
 
-version = '0.8'
 
-setup(name='quintagroup.seoptimizer',
-      version=version,
-      description="Quintagroup Search Engine Optimization Tool",
-      long_description="",
+long_description = '\n\n'.join([
+    open('README.rst').read(),
+    open('CONTRIBUTORS.rst').read(),
+    open('CHANGES.rst').read(),
+])
 
-      # Get more strings from
-      # http://www.python.org/pypi?%3Aaction=list_classifiers
-      classifiers=[
-          "Framework :: Plone",
-          "Framework :: Plone :: 5.2",
-          "Framework :: Zope2",
-          "Framework :: Zope3",
-          "Programming Language :: Python",
-          "Programming Language :: Python :: 2.7",
-          "Topic :: Software Development :: Libraries :: Python Modules",
-          "License :: OSI Approved :: GNU General Public License (GPL)",
-          "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
-          "Operating System :: OS Independent",
-          "Development Status :: 5 - Production/Stable",
-      ],
-      keywords='web zope plone seo search optimization',
-      author='Myroslav Opyr, Volodymyr Romaniuk, Mykola Kharechko, '
-             'Vitaliy Podoba, Volodymyr Cherepanyak, Taras Melnychuk, '
-             'Vitaliy Stepanov, Andriy Mylenkyy',
-      author_email='support@quintagroup.com',
-      url='http://quintagroup.com/services/',
-      license='GPL',
-      packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['quintagroup'],
-      include_package_data=True,
-      zip_safe=False,
-      install_requires=[
-          'setuptools'
-      ],
-      entry_points="""
-      # -*- Entry points: -*-
-      [z3c.autoinclude.plugin]
-      target = plone
-      """,
-      )
+
+setup(
+    name='quintagroup.canonicalpath',
+    version='0.8',
+    description="An add-on for Plone",
+    long_description=long_description,
+    # Get more from https://pypi.org/classifiers/
+    classifiers=[
+        "Environment :: Web Environment",
+        "Framework :: Plone",
+        "Framework :: Plone :: Addon",
+        "Framework :: Plone :: 5.2",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Operating System :: OS Independent",
+        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    ],
+    keywords='Python Plone',
+    author='Quintagroup',
+    author_email='FakeGitUserOrEmail',
+    url='https://github.com/collective/quintagroup.canonicalpath',
+    project_urls={
+        'PyPI': 'https://pypi.python.org/pypi/quintagroup.canonicalpath',
+        'Source': 'https://github.com/collective/quintagroup.canonicalpath',
+        'Tracker': 'https://github.com/collective/quintagroup.canonicalpath/issues',
+        # 'Documentation': 'https://quintagroup.canonicalpath.readthedocs.io/en/latest/',
+    },
+    license='GPL version 2',
+    packages=find_packages(exclude=['ez_setup']),
+    namespace_packages=['quintagroup'],
+    include_package_data=True,
+    zip_safe=False,
+    python_requires="==2.7, >=3.6",
+    install_requires=[
+        'setuptools',
+        # -*- Extra requirements: -*-
+        'z3c.jbot',
+        'plone.api>=1.8.4',
+        'plone.restapi',
+        'plone.app.dexterity',
+    ],
+    extras_require={
+        'test': [
+            'plone.app.testing',
+            # Plone KGS does not use this version, because it would break
+            # Remove if your package shall be part of coredev.
+            # plone_coredev tests as of 2016-04-01.
+            'plone.testing>=5.0.0',
+            'plone.app.contenttypes',
+            'plone.app.robotframework[debug]',
+        ],
+    },
+    entry_points="""
+    [z3c.autoinclude.plugin]
+    target = plone
+    [console_scripts]
+    update_locale = quintagroup.canonicalpath.locales.update:update_locale
+    """,
+)

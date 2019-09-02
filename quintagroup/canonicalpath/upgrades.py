@@ -11,6 +11,7 @@ from quintagroup.canonicalpath.interfaces  import ICanonicalLink
 from quintagroup.canonicalpath.adapters import PROPERTY_LINK
 from quintagroup.canonicalpath.adapters import PROPERTY_PATH
 from quintagroup.canonicalpath.adapters import DefaultPropertyAdapter
+from six.moves import map
 
 class CanonicalConvertor(object):
     """Convert canonical link to canonical path and vice versa."""
@@ -76,7 +77,7 @@ class CanonicalConvertor(object):
             converter(src, dst)
         except Exception:
             import sys
-            et, em, etr = map(str, sys.exc_info())
+            et, em, etr = list(map(str, sys.exc_info()))
             lev = ERROR
             msg += "ERROR: %s: %s" % (et, em)
         else:

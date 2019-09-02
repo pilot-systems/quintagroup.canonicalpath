@@ -1,5 +1,6 @@
 from zope.interface import Interface
 from zope.component import queryAdapter
+from six.moves import map
 
 #for compatibility with older plone versions 
 try:
@@ -18,8 +19,8 @@ except:
              callable.__implemented__ = Interface
              return callable
     
-from interfaces import ICanonicalPath
-from interfaces import ICanonicalLink
+from .interfaces import ICanonicalPath
+from .interfaces import ICanonicalLink
 
 @indexer(Interface)
 def canonical_path(obj, **kwargs):
@@ -42,5 +43,5 @@ def canonical_link(obj, **kwargs):
 #for compatibility with older plone versions 
 if not IS_NEW:
     from Products.CMFPlone.CatalogTool import registerIndexableAttribute
-    map(registerIndexableAttribute, ('canonical_path', 'canonical_link'),
-                                    (canonical_path, canonical_link))
+    list(map(registerIndexableAttribute, ('canonical_path', 'canonical_link'),
+                                    (canonical_path, canonical_link)))

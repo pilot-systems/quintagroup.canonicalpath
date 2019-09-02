@@ -1,5 +1,5 @@
 import re
-from zope.interface import implements
+from zope.interface import implementer
 from zope.component import adapts
 from zope.schema.interfaces import InvalidValue
 
@@ -76,11 +76,10 @@ class DefaultCanonicalAdapter(DefaultPropertyAdapter):
         super(DefaultCanonicalAdapter, self).setProp(value)
 
 
+@implementer(ICanonicalPath)
 class DefaultCanonicalPathAdapter(DefaultCanonicalAdapter):
     """Adapts base content to canonical path.
     """
-    implements(ICanonicalPath)
-
     prop = PROPERTY_PATH
 
     def __init__(self, context):
@@ -95,11 +94,10 @@ class DefaultCanonicalPathAdapter(DefaultCanonicalAdapter):
                               DefaultCanonicalAdapter.delProp)
 
 
+@implementer(ICanonicalLink)
 class DefaultCanonicalLinkAdapter(DefaultCanonicalAdapter):
     """Adapts base content to canonical link.
     """
-    implements(ICanonicalLink)
-
     prop = PROPERTY_LINK
 
     def getDefault(self):
