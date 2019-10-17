@@ -1,0 +1,5 @@
+=========================
+quintagroup.canonicalpath
+=========================
+
+User documentation
